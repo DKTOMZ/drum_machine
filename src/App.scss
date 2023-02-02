@@ -1,0 +1,153 @@
+@import url("https://fonts.googleapis.com/css?family=ABeeZee");
+
+$green: #1DB954;
+$black: #141414;
+$lwhite: #f1f0f0;
+$darkblue: #2c3640;
+$orange: #fc9b2c;
+$gray: #ccc;
+$transition: all .5s ease;
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+body {
+    font-family: 'ABeeZee', Arial, Helvetica, sans-serif;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $black;
+    color: white;
+    #drum-machine {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        padding: 10px;
+        background-color: $darkblue;
+        box-shadow: 0px 0px 3px 3px $orange;
+        border-radius: 5px;
+        h2 {text-align: center; margin-top: 10px;}
+            .rack {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0px 20px;
+            #drum-pads {
+                display: grid;
+                grid-template-columns: auto auto auto;;
+                gap: 20px;
+                margin-right: 60px;
+                .drum-pad {
+                    font-size: 18px;
+                    height: 70px;
+                    width: 90px;
+                    background-color: $green;
+                    border-radius: 5px;
+                    box-shadow: 1px 4px 4px 0px $black;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    &:hover{opacity: 0.8;}
+                    &:active{background-color: $orange; transform: translateY(4px);}
+                }
+                .active{background-color: $orange; transform: translateY(4px);}
+            }
+            .controls {
+                margin-top: 20px;
+                .power, .soundbank{
+                    margin-bottom: 30px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    .status {margin-right: 10px;}
+                    input[type="checkbox"] {
+                        position: absolute;
+                        opacity: 0;
+                        z-index: -1;
+                    }
+                    .check-trail {
+                        display: flex;
+                        align-items: center;
+                        width: 4em;
+                        height: 2em;
+                        background: $gray;
+                        border-radius: 2.5em;
+                        transition: $transition;
+                        cursor: pointer;
+                    }
+                    .check-handler {
+                        display: flex;
+                        margin-left: 0.3em;
+                        justify-content: center;
+                        align-items: center;
+                        width: 1.5em;
+                        height: 1.5em;
+                        background: $darkblue;
+                        border-radius: 50%;
+                        transition: $transition;
+                        box-shadow: 0 0 8px rgba(0,0,0,0.3);
+                        &:before {
+                          content: "\00D7";
+                          color: white;
+                          font-size: 1.3em;
+                          font-weight: bold;
+                        }
+                    }
+                    input[type="checkbox"]:checked + .check-trail {
+                        background: $green;
+                        .check-handler {
+                          margin-left: 55%;
+                          background: $darkblue;
+                          &::before {
+                            content: "\1F5F8";
+                            color: white;
+                            font-size: 1.3em;
+                            font-weight: bold;
+                          }
+                        }
+                    }                      
+                }
+                .volume { 
+                    margin-bottom: 30px;
+                    input {cursor: pointer;}
+                }
+                #display {
+                    height: 50px;
+                    width: 170px;
+                    background-color: $gray;
+                    color: black;
+                    margin-bottom: 30px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 700px) {
+    #drum-machine {
+        width: 90% !important;
+        margin: auto;
+        transform: scale(0.9);
+        .rack {
+            flex-direction: column !important;
+            transform: scale(0.9);
+            #drum-pads {
+                margin-right: 0px !important;
+            }
+            
+        }
+    }
+}
+
